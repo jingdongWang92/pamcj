@@ -1,0 +1,31 @@
+{
+  "name": "@jcmap/page-login",
+  "version": "4.5.0",
+  "private": true,
+  "homepage": "/login",
+  "dependencies": {
+    "@jcnetwork/storage-utils": "^1.5.2",
+    "@jcnetwork/util-better-request": "^2.1.1",
+    "antd": "^3.3.0",
+    "babel-polyfill": "^6.26.0",
+    "normalizr": "^3.2.4",
+    "raven-js": "^3.23.3",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-redux": "^5.0.7",
+    "react-scripts": "^1.1.1",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.3.0",
+    "redux-form": "^7.3.0",
+    "redux-saga": "^0.16.0",
+    "styled-components": "^3.2.3",
+    "sweetalert2": "^7.16.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "https://jcmap.jcbel.com"
+}

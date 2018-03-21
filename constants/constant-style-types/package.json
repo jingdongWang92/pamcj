@@ -1,0 +1,9 @@
+{
+  "name": "@jcmap/constant-style-types",
+  "version": "3.10.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "http://nexus.jcbel.com/repository/npm-hosted/"
+  }
+}

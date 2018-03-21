@@ -1,0 +1,11 @@
+export const MODULE_NAME = 'layer-create';
+
+
+export const LAYER_FETCH = 'LAYER_FETCH';
+export const LAYER_FETCH_SUCCESS = 'LAYER_FETCH_SUCCESS';
+export const LAYER_FETCH_FAILED = 'LAYER_FETCH_FAILED';
+
+
+export const LAYER_UPDATE = 'LAYER_UPDATE';
+export const LAYER_UPDATE_SUCCESS = 'LAYER_UPDATE_SUCCESS';
+export const LAYER_UPDATE_FAILED = 'LAYER_UPDATE_FAILED';

@@ -1,0 +1,49 @@
+.qr-code-scanner-container {
+  position: fixed;
+  z-index: 6000;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+
+.qr-code-scanner-mask {
+  position: fixed;
+  border: 500px solid hsla(0, 0%, 0%, 0.5);
+  width: 240px;
+  height: 240px;
+  box-sizing: content-box;
+  z-index: 6200;
+}
+
+
+.qr-code-scanner-hint {
+  position: fixed;
+  top: 2em;
+  z-index: 6300;
+  padding: 5px 15px;
+  color: #31708f;
+  background-color: hsl(200, 64%, 91%);
+  border-color: hsl(190, 65%, 84%);
+  border-radius: 4px;
+}
+
+
+.qr-code-scanner-player {
+  z-index: 6100;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.qr-code-scanner-close {
+  position: fixed;
+  bottom: 1.8em;
+  z-index: 6300;
+}

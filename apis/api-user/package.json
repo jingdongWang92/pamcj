@@ -1,0 +1,31 @@
+{
+  "name": "@jcmap/api-user",
+  "version": "4.5.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "@jcmap/db-sequelize": "^4.5.0",
+    "@jcmap/middleware-passport": "^4.5.0",
+    "@jcnetwork/mail-utils": "^0.1.0",
+    "@jcnetwork/normalize-pagination-limit-middleware": "^1.0.0",
+    "@jcnetwork/normalize-pagination-skip-middleware": "^0.1.0",
+    "@jcnetwork/password-utils": "^0.1.0",
+    "@jcnetwork/util-token": "^2.0.1",
+    "@koa/cors": "^2.2.1",
+    "dotenv": "^5.0.1",
+    "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-helmet": "^3.3.0",
+    "koa-logger": "^3.2.0",
+    "koa-route": "3.2.0",
+    "nanoid": "^1.0.2",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  }
+}

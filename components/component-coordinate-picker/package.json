@@ -1,0 +1,26 @@
+{
+  "name": "@jcmap/component-coordinate-picker",
+  "version": "4.5.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "http://nexus.jcbel.com/repository/npm-hosted/"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "scripts": {
+    "start": "NODE_ENV=production babel --watch ./src --out-dir ./lib --copy-files --source-maps",
+    "build": "npm run clean && npm run babel",
+    "clean": "rm -rf ./lib",
+    "babel": "NODE_ENV=production babel ./src --out-dir ./lib --copy-files --source-maps",
+    "postinstall": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "leaflet": "^1.3.1"
+  }
+}

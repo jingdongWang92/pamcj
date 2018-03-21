@@ -1,0 +1,94 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+@media only screen and (min-width: 1600px){
+  html {
+    font-size: 16px !important;
+  }
+}
+
+.main {
+  width: 95.36rem;
+  height: 53.57rem;
+  margin: auto;
+  margin-top: 2.3rem;
+  background: #3498DB;
+  border-radius: 1.43rem;
+  border: 1px solid #fff;
+}
+
+.div-logo {
+  width: 25.64rem;
+  height: 20.36rem;
+  margin-top: 2.14rem;
+  margin-left: 5.29rem;
+}
+
+.img-logo {
+  width: 25.64rem;
+  height: 20.36rem;
+}
+
+.div-login {
+  width: 25.64rem;
+  height: 26rem;
+  border-radius: 0.36rem;
+  background: #fff;
+  margin-top: 24.21rem;
+  margin-left: 5.29rem;
+  margin: 1.71rem 0 3.36rem 5.29rem;
+}
+
+
+.form-login {
+  padding: 2.36rem;
+}
+
+.panel-body {
+  background: #fff;
+  border-radius: 2px;
+  position: relative;
+}
+
+.btn-login {
+  color: #3498DB;
+  font-size: 1rem;
+  margin-top: 2.36rem;
+}
+
+.map {
+  margin-top: -53.57rem;
+  float: right;
+  height: 53.57rem;
+  width: 58.93rem;
+}
+
+.image-inddor-map {
+  width: 58.93rem;
+  height: 53.40rem;
+  border-bottom-right-radius: 1.43rem;
+  border-top-right-radius: 1.43rem;
+}

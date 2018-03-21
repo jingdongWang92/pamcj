@@ -1,0 +1,9 @@
+{
+  "name": "@jcmap/constant-organization-roles",
+  "version": "4.5.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "http://nexus.jcbel.com/repository/npm-hosted/"
+  }
+}

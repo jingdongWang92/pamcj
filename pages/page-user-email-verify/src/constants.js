@@ -1,0 +1,6 @@
+export const MODULE_NAME = 'page-user-email-verify';
+
+
+export const USER_EMAIL_VERIFY = 'USER_EMAIL_VERIFY';
+export const USER_EMAIL_VERIFY_SUCCESS = 'USER_EMAIL_VERIFY_SUCCESS';
+export const USER_EMAIL_VERIFY_FAILED = 'USER_EMAIL_VERIFY_FAILED';

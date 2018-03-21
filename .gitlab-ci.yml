@@ -1,0 +1,574 @@
+variables:
+  NODEJS_ORG_MIRROR: "http://npm.taobao.org/mirrors/node"
+  DOCKER_REGISTRY: "registry.cn-hangzhou.aliyuncs.com"
+  DOCKER_REGISTRY_NAMESPACE: "jc-network-web3"
+  DOCKER_REGISTRY_USERNAME: "web-deploy-robot@1372190759439936"
+  DOCKER_REGISTRY_PASSWORD: "tnWVGRq3UKORf3Yw0K9a2L0z7"
+
+
+stages:
+- bootstrap
+- build
+- release
+
+
+# templates
+.build-page: &build-page
+  stage: build
+  image: node:latest
+  script:
+  - sh ./build-page.sh
+  cache:
+    paths:
+    - node_modules/
+    - pages/page-cartogram-collection-create/node_modules/
+    - pages/page-cartogram-collection-list/node_modules/
+    - pages/page-cartogram-collection-route/node_modules/
+    - pages/page-cartogram-collection-view/node_modules/
+    - pages/page-cartogram-create/node_modules/
+    - pages/page-cartogram-draw/node_modules/
+    - pages/page-cartogram-georeference/node_modules/
+    - pages/page-cartogram-list/node_modules/
+    - pages/page-cartogram-view/node_modules/
+    - pages/page-geometry-style-view/node_modules/
+    - pages/page-layer-create/node_modules/
+    - pages/page-layer-list/node_modules/
+    - pages/page-layer-view/node_modules/
+    - pages/page-login/node_modules/
+    - pages/page-logout/node_modules/
+    - pages/page-organization-list/node_modules/
+    - pages/page-password-forgot/node_modules/
+    - pages/page-password-reset/node_modules/
+    - pages/page-plan-list/node_modules/
+    - pages/page-plan-pricing/node_modules/
+    - pages/page-signup/node_modules/
+    - pages/page-token-storge/node_modules/
+    - pages/page-user-email-verify/node_modules/
+    - pages/page-user-list/node_modules/
+    - pages/page-user-profile/node_modules/
+    - pages/page-user-relation/node_modules/
+
+.release-docker-image: &release-docker-image
+  stage: release
+  image: docker:latest
+  script:
+  - sh ./release-docker-image.sh
+  dependencies: []
+
+# api-authorization
+release-api-authorization:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-authorization
+
+# api-authorize
+release-api-authorize:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-authorize
+
+# api-cartogram
+release-api-cartogram:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-cartogram
+
+# api-cartogram-collection
+release-api-cartogram-collection:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-cartogram-collection
+
+# api-cartogram-georeference
+release-api-cartogram-georeference:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-cartogram-georeference
+
+# api-cartogram-route
+release-api-cartogram-route:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-cartogram-route
+
+# api-feature
+release-api-feature:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-feature
+
+# api-geocoding
+release-api-geocoding:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-geocoding
+
+# api-geometry-style
+release-api-geometry-style:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-geometry-style
+
+# api-layer
+release-api-layer:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-layer
+
+# api-organization
+release-api-organization:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-organization
+
+# api-organization-invitation
+release-api-organization-invitation:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-organization-invitation
+
+# api-organization-member
+release-api-organization-member:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-organization-member
+
+# api-plan
+release-api-plan:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-plan
+
+# api-token
+release-api-token:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-token
+
+# api-user
+release-api-user:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: apis/api-user
+
+# doc-apis
+release-doc-apis:
+  <<: *release-docker-image
+  variables:
+    PROJECT_DIR: documents/doc-apis
+
+# page-cartogram-collection-create
+build-page-cartogram-collection-create:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-cartogram-collection-create/build/
+  variables:
+    PROJECT_DIR: pages/page-cartogram-collection-create
+
+release-page-cartogram-collection-create:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-cartogram-collection-create
+  variables:
+    PROJECT_DIR: pages/page-cartogram-collection-create
+
+# page-cartogram-collection-list
+build-page-cartogram-collection-list:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-cartogram-collection-list/build/
+  variables:
+    PROJECT_DIR: pages/page-cartogram-collection-list
+
+release-page-cartogram-collection-list:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-cartogram-collection-list
+  variables:
+    PROJECT_DIR: pages/page-cartogram-collection-list
+
+# page-cartogram-collection-route
+build-page-cartogram-collection-route:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-cartogram-collection-route/build/
+  variables:
+    PROJECT_DIR: pages/page-cartogram-collection-route
+
+release-page-cartogram-collection-route:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-cartogram-collection-route
+  variables:
+    PROJECT_DIR: pages/page-cartogram-collection-route
+
+# page-cartogram-collection-view
+build-page-cartogram-collection-view:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-cartogram-collection-view/build/
+  variables:
+    PROJECT_DIR: pages/page-cartogram-collection-view
+
+release-page-cartogram-collection-view:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-cartogram-collection-view
+  variables:
+    PROJECT_DIR: pages/page-cartogram-collection-view
+
+# page-cartogram-create
+build-page-cartogram-create:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-cartogram-create/build/
+  variables:
+    PROJECT_DIR: pages/page-cartogram-create
+
+release-page-cartogram-create:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-cartogram-create
+  variables:
+    PROJECT_DIR: pages/page-cartogram-create
+
+# page-cartogram-draw
+build-page-cartogram-draw:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-cartogram-draw/build/
+  variables:
+    PROJECT_DIR: pages/page-cartogram-draw
+
+release-page-cartogram-draw:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-cartogram-draw
+  variables:
+    PROJECT_DIR: pages/page-cartogram-draw
+
+# page-cartogram-georeference
+build-page-cartogram-georeference:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-cartogram-georeference/build/
+  variables:
+    PROJECT_DIR: pages/page-cartogram-georeference
+
+release-page-cartogram-georeference:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-cartogram-georeference
+  variables:
+    PROJECT_DIR: pages/page-cartogram-georeference
+
+# page-cartogram-list
+build-page-cartogram-list:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-cartogram-list/build/
+  variables:
+    PROJECT_DIR: pages/page-cartogram-list
+
+release-page-cartogram-list:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-cartogram-list
+  variables:
+    PROJECT_DIR: pages/page-cartogram-list
+
+# page-cartogram-view
+build-page-cartogram-view:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-cartogram-view/build/
+  variables:
+    PROJECT_DIR: pages/page-cartogram-view
+
+release-page-cartogram-view:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-cartogram-view
+  variables:
+    PROJECT_DIR: pages/page-cartogram-view
+
+# page-geometry-style-view
+build-page-geometry-style-view:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-geometry-style-view/build/
+  variables:
+    PROJECT_DIR: pages/page-geometry-style-view
+
+release-page-geometry-style-view:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-geometry-style-view
+  variables:
+    PROJECT_DIR: pages/page-geometry-style-view
+
+# page-layer-create
+build-page-layer-create:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-layer-create/build/
+  variables:
+    PROJECT_DIR: pages/page-layer-create
+
+release-page-layer-create:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-layer-create
+  variables:
+    PROJECT_DIR: pages/page-layer-create
+
+# page-layer-list
+build-page-layer-list:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-layer-list/build/
+  variables:
+    PROJECT_DIR: pages/page-layer-list
+
+release-page-layer-list:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-layer-list
+  variables:
+    PROJECT_DIR: pages/page-layer-list
+
+# page-layer-view
+build-page-layer-view:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-layer-view/build/
+  variables:
+    PROJECT_DIR: pages/page-layer-view
+
+release-page-layer-view:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-layer-view
+  variables:
+    PROJECT_DIR: pages/page-layer-view
+
+# page-login
+build-page-login:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-login/build/
+  variables:
+    PROJECT_DIR: pages/page-login
+
+release-page-login:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-login
+  variables:
+    PROJECT_DIR: pages/page-login
+
+# page-logout
+build-page-logout:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-logout/build/
+  variables:
+    PROJECT_DIR: pages/page-logout
+
+release-page-logout:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-logout
+  variables:
+    PROJECT_DIR: pages/page-logout
+
+# page-organization-list
+build-page-organization-list:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-organization-list/build/
+  variables:
+    PROJECT_DIR: pages/page-organization-list
+
+release-page-organization-list:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-organization-list
+  variables:
+    PROJECT_DIR: pages/page-organization-list
+
+# page-password-forgot
+build-page-password-forgot:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-password-forgot/build/
+  variables:
+    PROJECT_DIR: pages/page-password-forgot
+
+release-page-password-forgot:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-password-forgot
+  variables:
+    PROJECT_DIR: pages/page-password-forgot
+
+# page-password-reset
+build-page-password-reset:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-password-reset/build/
+  variables:
+    PROJECT_DIR: pages/page-password-reset
+
+release-page-password-reset:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-password-reset
+  variables:
+    PROJECT_DIR: pages/page-password-reset
+
+# page-plan-list
+build-page-plan-list:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-plan-list/build/
+  variables:
+    PROJECT_DIR: pages/page-plan-list
+
+release-page-plan-list:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-plan-list
+  variables:
+    PROJECT_DIR: pages/page-plan-list
+
+# page-plan-pricing
+build-page-plan-pricing:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-plan-pricing/build/
+  variables:
+    PROJECT_DIR: pages/page-plan-pricing
+
+release-page-plan-pricing:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-plan-pricing
+  variables:
+    PROJECT_DIR: pages/page-plan-pricing
+
+# page-signup
+build-page-signup:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-signup/build/
+  variables:
+    PROJECT_DIR: pages/page-signup
+
+release-page-signup:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-signup
+  variables:
+    PROJECT_DIR: pages/page-signup
+
+# page-token-storge
+build-page-token-storge:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-token-storge/build/
+  variables:
+    PROJECT_DIR: pages/page-token-storge
+
+release-page-token-storge:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-token-storge
+  variables:
+    PROJECT_DIR: pages/page-token-storge
+
+# page-user-email-verify
+build-page-user-email-verify:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-user-email-verify/build/
+  variables:
+    PROJECT_DIR: pages/page-user-email-verify
+
+release-page-user-email-verify:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-user-email-verify
+  variables:
+    PROJECT_DIR: pages/page-user-email-verify
+
+# page-user-list
+build-page-user-list:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-user-list/build/
+  variables:
+    PROJECT_DIR: pages/page-user-list
+
+release-page-user-list:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-user-list
+  variables:
+    PROJECT_DIR: pages/page-user-list
+
+# page-user-profile
+build-page-user-profile:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-user-profile/build/
+  variables:
+    PROJECT_DIR: pages/page-user-profile
+
+release-page-user-profile:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-user-profile
+  variables:
+    PROJECT_DIR: pages/page-user-profile
+
+# page-user-relation
+build-page-user-relation:
+  <<: *build-page
+  artifacts:
+    paths:
+    - pages/page-user-relation/build/
+  variables:
+    PROJECT_DIR: pages/page-user-relation
+
+release-page-user-relation:
+  <<: *release-docker-image
+  dependencies:
+  - build-page-user-relation
+  variables:
+    PROJECT_DIR: pages/page-user-relation

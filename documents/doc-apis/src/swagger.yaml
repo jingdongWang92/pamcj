@@ -1,0 +1,456 @@
+openapi: 3.0.0
+
+
+info:
+  title: 甲虫地图平台
+  description: 甲虫地图平台接口文档
+  version: 1.0.0
+
+
+servers:
+- url: https://jcmap.jcbel.com/apis
+  description: 正式服务器
+
+
+tags:
+- name: cartogram
+  description: 地图
+- name: cartogram collection
+  description: 地图集
+- name: "dumb beacon"
+  description: "一代标签"
+
+
+paths:
+    /dumb-beacons:
+      get:
+        tags:
+        - dumb beacon
+        summary: 查询一代标签
+        description: 查询一代标签的信息
+        operationId: searchDumbBeacons
+        parameters:
+        - name: limit
+          in: query
+          description: 指定返回的结果数量
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 1000
+            default: 100
+
+        - name: skip
+          in: query
+          description: 指定查询时忽略的结果数量
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10000
+            default: 0
+
+        responses:
+          200:
+            description: 查询成功
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/DumbBeacon'
+
+          default:
+            description: unexpedted error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
+
+        security:
+        - paas_oauth2_implicit:
+          - read:dumb-beacon
+
+
+    /dumb-beacons/{device_sn}:
+      get:
+        tags:
+        - dumb beacon
+        summary: 通过设备sn获取一代标签信息
+        description: 通过设备sn获取一代标签信息
+        operationId: fetchDumbBeacon
+
+        parameters:
+        - name: device_sn
+          in: path
+          description: 设备sn
+          required: true
+          schema:
+            type: string
+
+
+        responses:
+          200:
+            description: "获取成功"
+
+          404:
+            description: "此设备不存在"
+        security:
+        - paas_oauth2_implicit:
+          - read:dumb-beacon
+
+
+      put:
+        tags:
+        - dumb beacon
+        summary: 更新一代标签信息
+        description: 更新一代标签信息
+        operationId: updateDumbBeacon
+
+        parameters:
+        - name: device_sn
+          in: path
+          description: 设备sn
+          required: true
+          schema:
+            type: integer
+
+        requestBody:
+          description: Dumb Beacon entity
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DumbBeacon'
+
+        responses:
+          200:
+            description: 更新成功
+          400:
+            description: 参数不合法
+          404:
+            description: 标签不存在s
+
+        security:
+        - paas_oauth2_implicit:
+          - write:dumb-beacon
+
+
+    /cartogram-collections/{cartogramCollectionId}/geojson:
+      get:
+        tags:
+        - cartogram collection
+        summary: 下载地图集数据
+        description: 下载地图集包含的地图数据以及地图间连接数据
+        operationId: fetchDumbBeacon
+
+        parameters:
+        - name: cartogramCollectionId
+          in: path
+          description: 地图集id
+          required: true
+          schema:
+            type: string
+
+        responses:
+          200:
+            description: "获取成功"
+
+          404:
+            description: "此设备不存在"
+        security:
+        - paas_oauth2_implicit:
+          - read:dumb-beacon
+
+
+    /cartograms:
+      get:
+        tags:
+        - cartogram
+        summary: 获取地图列表
+        description: 获取自己创建的或者其他公开的地图
+        operationId: searchCartograms
+        parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/skip'
+        responses:
+          200:
+            description: 成功
+
+          400+:
+            description: 异常
+        security:
+        - paas_http:
+          - read:cartograms
+
+    /cartograms/{cartogram_id}/dumb-beacons:
+      get:
+        tags:
+        - cartogram
+        - dumb beacon
+        summary: 获取定位标签feature
+        parameters:
+        - $ref: '#/components/parameters/cartogram_id'
+        responses:
+          200:
+            description: 成功
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      mote_eui:
+                        type: string
+                      x:
+                        type: number
+                        format: double
+                      y:
+                        type: number
+                        format: double
+
+      post:
+        tags:
+        - cartogram
+        - dumb beacon
+        summary: 创建定位标签
+        parameters:
+        - $ref: '#/components/parameters/cartogram_id'
+        requestBody:
+          description: 想要添加到系统的定位标签信息
+          content:
+            application/json(single):
+              schema:
+                type: object
+                properties:
+                  mote_eui:
+                    type: string
+                  x:
+                    type: number
+                    format: double
+                  y:
+                    type: number
+                    format: double
+              examples:
+                payload:
+                  summary: Payload example
+
+            application/json(batch):
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    mote_eui:
+                      type: string
+                    x:
+                      type: number
+                      format: double
+                    y:
+                      type: number
+                      format: double
+        responses:
+          200:
+            description: 创建成功
+          400:
+            description: 参数错误
+
+      delete:
+        tags:
+        - cartogram
+        - dumb beacon
+        operationId: removeBatchDumbBeaconFeature
+        summary: 批量删除定位标签feature
+        parameters:
+        - $ref: '#/components/parameters/cartogram_id'
+        requestBody:
+          description: 批量删除定位标签features
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    mote_eui:
+                      type: string
+              examples:
+                payload:
+                  summary: woeurwu
+                  value: [{"mote_eui":"0a0200000000002c"},{"mote_eui":"0a0200000000002d"}]
+        responses:
+          204:
+            description: 删除成功
+
+    /cartograms/{cartogram_id}/dumb-beacons/{dumb_beacon_feature_id}:
+      put:
+        tags:
+        - cartogram
+        - dumb beacon
+        operationId: updateDumbBeaconFeature
+        summary: 更新定位标签feature
+        parameters:
+        - $ref: '#/components/parameters/cartogram_id'
+        requestBody:
+          description: 需要更新的定位标签信息
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mote_eui:
+                    type: string
+                  x:
+                    type: number
+                    format: double
+                  y:
+                    type: number
+                    format: double
+              examples:
+                payload:
+                  summary: Payload example
+        responses:
+          200:
+            description: 更新成功
+          400:
+            description: 参数错误
+
+      delete:
+        tags:
+        - cartogram
+        - dumb beacon
+        operationId: removeSingleDumbBeaconFeature
+        summary: 删除一个定位标签feature
+        parameters:
+        - $ref: '#/components/parameters/cartogram_id'
+        responses:
+          204:
+            description: 删除成功
+
+components:
+  parameters:
+    limit:
+      name: limit
+      in: query
+      description: 限制结果集返回的条数
+      schema:
+        type: integer
+        format: int32
+        default: 1000
+    skip:
+      name: skip
+      in: query
+      description: 控制查询时忽略的结果数量
+      schema:
+        type: integer
+        format: int32
+        default: 0
+
+    cartogram_id:
+      name: cartogram_id
+      in: path
+      required: true
+      description: 地图id
+      schema:
+        type: string
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: boolean
+        message:
+          type: string
+
+    User:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        username:
+          type: "string"
+        firstName:
+          type: "string"
+        lastName:
+          type: "string"
+        email:
+          type: "string"
+        password:
+          type: "string"
+        phone:
+          type: "string"
+        userStatus:
+          type: "integer"
+          format: "int32"
+          description: "User Status"
+
+    DumbBeacon:
+      type: "object"
+      required:
+      - "name"
+      - "photoUrls"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        owner:
+          $ref: '#/components/schemas/User'
+        name:
+          type: "string"
+          example: "doggie"
+        photoUrls:
+          type: "array"
+          items:
+            type: "string"
+        status:
+          type: "string"
+          description: "pet status in the store"
+          enum:
+          - "available"
+          - "pending"
+          - "sold"
+
+  securitySchemes:
+    paas_http:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+    paas_oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://jcmap.jcbel.com/apis/authorize
+          refreshUrl: https://jcmap.jcbel.com/apis/token
+          scopes:
+            layer: 图层资源
+            cartogram: 地图资源
+            cartogram-collection: 地图集资源
+
+        password:
+          tokenUrl: https://jcmap.jcbel.com/apis/token
+          refreshUrl: https://jcmap.jcbel.com/apis/token
+          scopes:
+            layer: 图层资源
+            cartogram: 地图资源
+            cartogram-collection: 地图集资源
+
+        clientCredentials:
+          tokenUrl: https://jcmap.jcbel.com/apis/token
+          refreshUrl: https://jcmap.jcbel.com/apis/token
+          scopes:
+            layer: 图层资源
+            cartogram: 地图资源
+            cartogram-collection: 地图集资源
+
+        authorizationCode:
+          authorizationUrl: https://jcmap.jcbel.com/apis/authorize
+          tokenUrl: https://jcmap.jcbel.com/apis/token
+          refreshUrl: https://jcmap.jcbel.com/apis/token
+          scopes:
+            layer: 图层资源
+            cartogram: 地图资源
+            cartogram-collection: 地图集资源

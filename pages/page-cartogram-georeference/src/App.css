@@ -1,0 +1,13 @@
+/* 根据菜单的折叠状态修改容器的宽度 */
+
+.content-with-sider-custom .app-container {
+  position: fixed;
+  top: 80px;
+  right: 5px;
+  bottom: 5px;
+  left: 216px;
+}
+
+.content-with-sider-collapsed-custom .app-container {
+  left: 96px;
+}

@@ -1,0 +1,38 @@
+[{
+  "id": "water-edge-3d",
+  "source": "custom-data",
+  "type": "fill-extrusion",
+  "paint": {
+    "fill-extrusion-color": {
+      "type": "identity",
+      "property": "stroke_color"
+    },
+    "fill-extrusion-height": 0,
+    "fill-extrusion-base": 0,
+    "fill-extrusion-opacity": 0.5
+  }
+}, {
+  "id": "water",
+  "source": "custom-data",
+  "type": "fill",
+  "paint": {
+    "fill-color": {
+      "type": "identity",
+      "property": "fill_color"
+    }
+  }
+}, {
+  "id": "water-edge",
+  "source": "custom-data",
+  "type": "line",
+  "paint": {
+    "line-width": {
+      "type": "identity",
+      "property": "stroke_width"
+    },
+    "line-color": {
+      "type": "identity",
+      "property": "stroke_color"
+    }
+  }
+}]

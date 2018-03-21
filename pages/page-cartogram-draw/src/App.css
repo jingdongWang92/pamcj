@@ -1,0 +1,60 @@
+/* 根据菜单的折叠状态修改容器的宽度 */
+
+.content-with-sider-custom .app-container {
+  position: fixed;
+  top: 80px;
+  right: 5px;
+  bottom: 33px;
+  left: 216px;
+  transition: all .2s;
+}
+
+.content-with-sider-collapsed-custom .app-container {
+  position: fixed;
+  top: 80px;
+  right: 5px;
+  bottom: 33px;
+  left: 96px;
+  transition: all .2s;
+}
+
+.button-actived {
+  background-color: rgb(41, 77, 184);
+}
+
+.leaflet-vertex {
+  border: 2px solid #3388ff;
+  border-radius: 50%;
+  background-color: hsla(148, 25%, 83%, 0.618);
+}
+
+.leaflet-middle-vertex {
+  border: 1px solid #3388ff;
+  border-radius: 50%;
+  background-color: hsla(148, 25%, 83%, 0.618);
+}
+
+.leaflet-edge-title {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.leaflet-point {
+  background-image: url("https://cdn2.iconfinder.com/data/icons/flat-web/512/716991-poi-256.png");
+  font-size: 36px;
+}
+
+.leaflet-point-icon {
+
+}
+
+.interactive-marker-icon {
+  border-radius: 50%;
+  background-color: rgba(65, 96, 200, 0.65);
+}
+
+.interactive-marker-icon:hover {
+  background-color: rgba(208, 148, 32, 0.65);
+}

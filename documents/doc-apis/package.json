@@ -1,0 +1,8 @@
+{
+  "name": "@jcmap/doc-apis",
+  "version": "3.5.1",
+  "description": "地图平台 api 文档",
+  "main": "src/swagger.yaml",
+  "license": "MIT",
+  "private": true
+}

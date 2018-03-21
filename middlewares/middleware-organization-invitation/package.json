@@ -1,0 +1,17 @@
+{
+  "name": "@jcmap/middleware-organization-invitation",
+  "version": "4.5.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "http://nexus.jcbel.com/repository/npm-hosted/"
+  },
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "@jcmap/constant-organization-roles": "^4.5.0",
+    "@jcnetwork/mail-utils": "^0.1.0",
+    "nodemon": "^1.17.2"
+  }
+}

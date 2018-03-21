@@ -1,0 +1,21 @@
+{
+  "name": "jcmap",
+  "version": "1.0.0",
+  "description": "JC Map",
+  "main": "index.js",
+  "author": "DevOps <devops@jcble.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "apis/*",
+    "components/*",
+    "constants/*",
+    "databases/*",
+    "documents/*",
+    "middlewares/*",
+    "pages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^2.9.0"
+  }
+}

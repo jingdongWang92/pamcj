@@ -1,0 +1,13 @@
+exports.TYPE_POINT = 'point';
+exports.TYPE_CURVE = 'curve';
+exports.TYPE_SURFACE = 'surface';
+exports.TYPE_FILL = 'fill';
+exports.TYPE_STROKE = 'stroke';
+exports.TYPE_SIZE = 'size';
+exports.TYPE_OPACITY = 'opacity';
+exports.TYPE_ROTATION = 'rotation';
+exports.TYPE_ANCHOR_POINT = 'anchor_point';
+exports.TYPE_DISPLACEMENT = 'displacement';
+exports.TYPE_GRAPHIC = 'graphic';
+exports.TYPE_EXTERNAL_GRAPHIC = 'external_graphic';
+exports.TYPE_MARK = 'mark';

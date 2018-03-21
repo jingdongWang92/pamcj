@@ -1,0 +1,31 @@
+{
+  "name": "@jcmap/page-cartogram-collection-route",
+  "version": "4.5.0",
+  "private": true,
+  "homepage": "/cartogram-collection/route",
+  "dependencies": {
+    "@jcmap/component-app-shell": "^4.5.1",
+    "@jcnetwork/util-better-request": "^2.0.0",
+    "@jcnetwork/util-uri": "^1.0.0",
+    "antd": "^3.3.0",
+    "babel-polyfill": "^6.26.0",
+    "normalizr": "^3.2.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "react-scripts": "^1.1.1",
+    "redux": "^3.7.2",
+    "redux-actions": "^2.3.0",
+    "redux-form": "^7.3.0",
+    "redux-saga": "^0.16.0",
+    "reselect": "^3.0.1",
+    "sweetalert2": "^7.16.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "https://jcmap.jcbel.com"
+}

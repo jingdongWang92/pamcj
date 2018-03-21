@@ -1,0 +1,7 @@
+export const MODULE_NAME = 'app';
+
+export const ACCOUNT_BIND = 'ACCOUNT_BIND';
+export const ACCOUNT_BIND_SUCCESS = 'ACCOUNT_BIND_SUCCESS';
+export const ACCOUNT_BIND_FAILED = 'ACCOUNT_BIND_FAILED';
+
+export const SUBMITTING = 'SUBMITTING';
